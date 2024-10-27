@@ -1,4 +1,3 @@
-<p>list works!</p>
 <!-- <ul>
   @for (item of products; track item.id) {
 
@@ -23,7 +22,12 @@
 
 } -->
 
+<div class="action-container">
+  <a mat-raised-button color="primary" [routerLink]="['/create-product']"
+    >Criar produto</a
+  >
+</div>
+
 @for (item of products; track item?.id) {
 <app-card [product]="item"></app-card>
-
 }
