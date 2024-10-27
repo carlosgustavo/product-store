@@ -14,6 +14,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './list.component.scss',
 })
 export class ListComponent {
+productTitle() {
+throw new Error('Method not implemented.');
+}
   products: Product[] = []; // Define como Product[] em vez de any[]
   productsService = inject(ProductsService);
 
