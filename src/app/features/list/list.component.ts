@@ -1,18 +1,22 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
+import { ProductsService } from '../../shared/services/products.service';
+import { Product } from '../../shared/interfaces/product';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [],
+  imports: [MatCardModule,MatButtonModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
 })
 export class ListComponent {
-  products: any[] = [];
-  httpClient = inject(HttpClient);
+  products: Product[] = []; // Define como Product[] em vez de any[]
+  productsService = inject(ProductsService);
+
   ngOnInit() {
-    this.httpClient.get<any>('/api/products').subscribe((e) => {
+    this.productsService.getAll().subscribe((e) => {
       this.products = e;
     });
   }
