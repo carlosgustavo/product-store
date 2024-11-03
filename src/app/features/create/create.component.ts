@@ -23,21 +23,23 @@ import { Router } from '@angular/router';
 export class CreateComponent {
   productsService = inject(ProductsService);
   matSnackBar = inject(MatSnackBar);
-
   router = inject(Router);
 
-/*   form = new FormGroup({
+  form = new FormGroup({
     title: new FormControl<string>('', {
       nonNullable: true,
       validators: Validators.required,
     }),
-  }); */
+  });
 
-  onSubmit(product: Product) {
-    this.productsService.post(product).subscribe(() => {
-      this.matSnackBar.open('Produto criado com sucesso!', 'Ok');
-
-      this.router.navigateByUrl('/');
-    });
+  onSubmit() {
+    this.productsService
+      .post({
+        title: this.form.controls.title.value,
+      })
+      .subscribe(() => {
+        this.matSnackBar.open('Produto criado com sucesso!', 'ok');
+        this.router.navigateByUrl('/');
+      });
   }
 }
