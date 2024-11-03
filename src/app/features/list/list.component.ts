@@ -4,25 +4,29 @@ import { Product } from '../../shared/interfaces/product';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { CardComponent } from './components/card/card.component';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [CardComponent,RouterLink,MatButtonModule],
+  imports: [CardComponent, RouterLink, MatButtonModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
 })
 export class ListComponent {
-productTitle() {
-throw new Error('Method not implemented.');
-}
+  productTitle() {
+    throw new Error('Method not implemented.');
+  }
   products: Product[] = []; // Define como Product[] em vez de any[]
   productsService = inject(ProductsService);
+  router = inject(Router);
 
   ngOnInit() {
     this.productsService.getAll().subscribe((e) => {
       this.products = e;
     });
+  }
+  onEdit() {
+    this.router.navigateByUrl('/edit-product');
   }
 }

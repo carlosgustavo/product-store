@@ -26,25 +26,18 @@ export class CreateComponent {
 
   router = inject(Router);
 
-  form = new FormGroup({
+/*   form = new FormGroup({
     title: new FormControl<string>('', {
       nonNullable: true,
       validators: Validators.required,
     }),
-  });
+  }); */
 
-  onSubmit() {
-    this.productsService
-      .post({
-        title: this.form.controls.title.value,
-      })
-      .subscribe(() => {
-        this.matSnackBar.open('Produto criado com sucesso!', 'ok', {
-          duration: 3000,
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-        });
-        this.router.navigateByUrl('/');
-      });
+  onSubmit(product: Product) {
+    this.productsService.post(product).subscribe(() => {
+      this.matSnackBar.open('Produto criado com sucesso!', 'Ok');
+
+      this.router.navigateByUrl('/');
+    });
   }
 }
