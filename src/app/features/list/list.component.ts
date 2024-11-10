@@ -28,7 +28,7 @@ export class ListComponent {
   }
 
   onEdit(item: Product) {
-    console.log("🚀 ~ ListComponent ~ onEdit ~ item:", item)
+    console.log(item);
     this.router.navigate(['/edit-product', item.id]);
   }
 }

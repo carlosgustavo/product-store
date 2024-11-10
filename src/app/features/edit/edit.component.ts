@@ -34,19 +34,17 @@ export class EditComponent {
     }),
   });
 
-  constructor() {
-   // console.log('Product data:', this.product);
+  ngOnInit() {
+    console.log('Product data:', this.product.title);
   }
   onSubmit() {
     this.productsService
-      .put(this.product.id,{
+      .put(this.product.id, {
         title: this.form.controls.title.value,
       })
       .subscribe(() => {
-        this.matSnackBar.open('Produto criado com sucesso!', 'ok');
+        this.matSnackBar.open('Produto editado com sucesso!', 'ok');
         this.router.navigateByUrl('/');
       });
   }
-
-
 }

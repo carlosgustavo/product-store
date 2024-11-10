@@ -10,6 +10,7 @@ import {
   ProductsService,
 } from './shared/services/products.service';
 import { inject } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 
 export const routes: Routes = [
   {
@@ -29,7 +30,7 @@ export const routes: Routes = [
       product: async (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
         const productsService = inject(ProductsService);
         const id = route.paramMap.get('id') as string;
-        return productsService.get(id); // Retorna o produto usando o ID
+        return firstValueFrom(productsService.get(id)); // Usa firstValueFrom ao invés de toPromise
       },
     },
     loadComponent: () =>
